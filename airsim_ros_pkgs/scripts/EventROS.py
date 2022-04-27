@@ -18,6 +18,7 @@ from numba.np.ufunc import parallel
 from types import SimpleNamespace
 from numba import njit, prange, set_num_threads
 from dvs_msgs.msg import Event, EventArray 
+import copy
 
 parser = argparse.ArgumentParser(description="Simulate event data from AirSim")
 parser.add_argument("--debug", action="store_true")
@@ -310,7 +311,7 @@ if __name__ == "__main__":
                 else:
                     eventmessage.polarity = False
 
-                eventarraymessage.events.append(eventmessage)
+                eventarraymessage.events.append(copy.copy(eventmessage))
                 #rospy.loginfo(eventmessage)
                 #pub.publish(eventmessage)
 
